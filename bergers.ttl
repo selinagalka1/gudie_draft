@@ -1,0 +1,79 @@
+@prefix gudie: <http://www.gudie.org/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix schema: <http://schema.org/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix spa: <http://www.spa.org/> .
+@prefix cidoc: <http://www.cidoc-crm.org/cidoc-crm/> .
+@prefix gudie-life-event-voc: <http://www.gudie.org/life-event/> .
+
+### Exemplifies modification (cancellation) as well as rehearsal
+
+# Performance 3
+gudie:performance_3 rdf:type spa:Performance ;
+    schema:startDate "1762-04-12"^^xsd:date ;
+    gudie:hasModification gudie:performance_3_modification .
+
+# PerformanceProduction
+gudie:performance_3_production rdf:type spa:PerformanceProduction ;
+    spa:hasSetDesigner gudie:quaglio ;
+    spa:hasRepresentation gudie:performance_3 ;
+    spa:hasRehearsal gudie:rehearsal_3 .
+
+# PerformancePlan
+gudie:performance_3_plan rdf:type spa:performancePlan ;
+    spa:hasEvent gudie:replacement_event_1 ;
+    spa:hasEmbodiment gudie:performance_3_production ;
+    spa:choreographer gudie:angiolini ;
+    spa:hasCastMember :fabrice ;
+    gudie:isPartOf gudie:season17546 . # part of the general theater season
+
+# PerformanceWork
+gudie:performance_3_work rdf:type spa:PerformanceWork ;
+    rdfs:subClassOf gudie:la_recontre_heureuse_des_bergers .
+
+# Event: Modification
+gudie:performance_3_modification rdf:type gudie:Modification ;
+    schema:description "Le premier Ballet devoit être aussi nouveau, 
+    et il a été deja compose, mais par une maladie de la D:le Fabrice on pouvoit pas le donner."@fr ;
+    gudie:causedBy gudie-life-event-voc:sickness ; # extract from gudie:sickness
+    gudie:initialCast gudie:fabrice .
+
+# Rehearsal
+gudie:rehearsal_3 rdf:type gudie:Rehearsal ;
+    schema:startDate "1762-04-19"^^xsd:date .
+
+# Series: refers to the theater season as a whole, regardless of performance
+gudie:season17546 rdf:type spa:Season ;
+    spa:hasLocation "Burgtheater"@de ;
+    gudie:hasPolice gudie:lambacher .
+
+# Person: Riccoboni
+gudie:riccobini rdf:type foaf:Person ;
+    foaf:name "Riccoboni" ;
+    owl:sameAs <https://www.wikidata.org/wiki/Q3087936> .
+
+# Person: Fabrice
+gudie:fabrice rdf:type foaf:Person ;
+    foaf:name "Fabrice" .
+
+# Person: Boccarini
+gudie:boccarini rdf:type foaf:Person ;
+    foaf:name "Boccarini" .
+
+# Person: Angiolini
+gudie:angiolini rdf:type foaf:Person ;
+    foaf:name "S.r Angiolini" ;
+    owl:sameAs <https://www.wikidata.org/wiki/Q1495308> .
+
+# Person: Quaglio
+gudie:quaglio rdf:type foaf:Person ;
+    foaf:name "Maria Quaglio" .
+
+# Work 3
+gudie:la_recontre_heureuse_des_bergers rdf:type spa:Work ;
+    gudie:hasTitle "La Rencontre heureuse des Bergers"@fr ;
+    schema:genre "Ballet" ;
+    spa:hasCreator gudie:riccobini .
